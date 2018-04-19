@@ -4,6 +4,14 @@
 <map class="map" id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" show-location="true" markers="{{markers}}" bindmarkertap="makertap"></map>
 
 </view> -->
-<view class='target'>{{food.title}}</view>
-<button id= 'choose' bindtap='chooseOne'>{{message}}</button>
-<button bindtap='goTo' id='go' hidden='{{seen}}'>到这去</button>
+<view>
+  <image src='../images/index.jpg'></image>
+  <text>一会吃点啥？</text>
+</view>
+<view class='target' hidden='{{targetSeen}}'>{{food.title}}</view>
+<view>
+  <button id= 'choose' bindtap='chooseOne' type='primary'>{{message}}</button>
+</view>
+<view>
+  <button bindtap='goTo' id='go' hidden='{{seen}}' type='primary'>到这去</button>
+</view>

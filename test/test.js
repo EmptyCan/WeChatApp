@@ -9,8 +9,10 @@ Page({
     foods: [],
     food: '',
     flag: 1,
-    message: '吃点啥',
-    seen: 1
+    message: '看看有啥吃的',
+    seen: 1,
+    targetSeen: 0,
+    count: 0
   },
   // 实例化API核心类
   onShow: function () {
@@ -18,7 +20,7 @@ Page({
     var _this = this;  
     // 调用接口
     qqmapsdk.search({
-      keyword: '饭店',
+      keyword: '饭店',  
       page_size: 20,
       page_index: 1,
       success: function (res) {
@@ -42,7 +44,9 @@ Page({
   },
   chooseOne: function () {
     var _this = this;
-    if (this.data.flag == 1) {
+    if (this.data.flag == 1 && this.data.count<8) {
+      this.data.count++;
+      console.log(this.data.count)
       timer = setInterval(function () {
         var index = Math.round(Math.random() * 19);
         var newFood = _this.data.foods[index];
@@ -56,12 +60,21 @@ Page({
         message: '就它了!!',
         seen: 1
       })
+    } else if (this.data.count === 8){
+      clearInterval(timer);
+      console.log(this.data.food)
+      this.setData({
+        flag: 1,
+        targetSeen: 1,
+        message: '事儿多，别吃了！',
+        seen: 1
+      })
     } else {
       clearInterval(timer);
       console.log(this.data.food)
       this.setData({
         flag: 1,
-        message: '今天吃什么',
+        message: '这个不好吃，换一个',
         seen: 0
       })
     }

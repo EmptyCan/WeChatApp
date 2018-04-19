@@ -1,0 +1,10 @@
+<!--index.wxml-->
+<view class="container">
+  <view>
+    <image src='../../images/logo.jpg' class='logo'></image>
+  </view>
+  <view class='body'>
+    <text class='target'>{{food}}</text>
+    <button id='choose' bindtap='chooseOne'>{{message}}</button>
+  </view>
+</view>
